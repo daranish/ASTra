@@ -1,0 +1,76 @@
+[project]
+name = "astra"
+version = "0.1.0"
+description = "AI-Powered Codebase Analyzer ChatBot with AST parsing and RAG"
+authors = [
+    {name = "Your Name", email = "you@example.com"}
+]
+readme = "../README.md"
+requires-python = ">=3.13,<3.15"
+license = {text = "MIT"}
+packages = [{include = "astra", from = "src"}]
+dependencies = [
+    "fastapi (>=0.115,<0.117)",
+    "uvicorn[standard] (>=0.32,<0.35)",
+    "pydantic (>=2.10,<3)",
+    "pydantic-settings (>=2.7,<3)",
+    "qdrant-client (>=1.13,<2)",
+    "openai (>=1.60,<2)",
+    "google-genai (>=0.3,<1)",
+    "tree-sitter (>=0.25,<0.26)",
+    "tree-sitter-language-pack (>=1.8,<2)",
+    "httpx (>=0.28,<1)",
+    "tenacity (>=9.0,<10)",
+    "structlog (>=24.4,<26)",
+    "tiktoken (>=0.8,<1)",
+    "anyio (>=4.6,<5)",
+    "voyageai (>=0.5.0,<0.6.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.3,<10.0.0)",
+    "pytest-asyncio (>=0.24,<2)",
+    "pytest-cov (>=6,<7)",
+    "ruff (>=0.8,<1)",
+    "respx (>=0.21,<1)",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "N",   # pep8-naming
+    "C4",  # flake8-comprehensions
+    "RET", # flake8-return
+    "SIM", # flake8-simplify
+    "ASYNC", # flake8-async
+    "RUF", # ruff-specific
+]
+ignore = [
+    "E501", # line too long (handled by formatter)
+    "B008", # function call in default argument (FastAPI Depends)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["B011"]  # asserts in tests are fine
+"src/astra/errors.py" = ["N818"]  # exception names describe conditions, not errors
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-v --strict-markers --tb=short"

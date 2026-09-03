@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ── Base ─────────────────────────────────────────────────── */
+:root {
+  --deep-graphite: #0B0F14;
+  --dark-slate: #111820;
+  --slate-panel: #151D26;
+  --subtle-slate: #26313D;
+  --almost-white: #E6EDF3;
+  --muted-gray: #8B98A7;
+  --electric-blue: #4C8DFF;
+  --bright-blue: #6BA1FF;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--deep-graphite);
+  color: var(--almost-white);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Custom Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--subtle-slate);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-gray);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--subtle-slate) transparent;
+}
+
+/* ── Markdown Prose inside chat ───────────────────────────── */
+.markdown-body {
+  line-height: 1.7;
+  word-wrap: break-word;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  color: var(--almost-white);
+  font-weight: 600;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-body h1 { font-size: 1.35rem; }
+.markdown-body h2 { font-size: 1.2rem; }
+.markdown-body h3 { font-size: 1.05rem; }
+
+.markdown-body p {
+  margin-bottom: 0.75em;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.markdown-body li {
+  margin-bottom: 0.25em;
+}
+
+.markdown-body strong {
+  color: var(--almost-white);
+  font-weight: 600;
+}
+
+.markdown-body em {
+  color: var(--muted-gray);
+}
+
+.markdown-body a {
+  color: var(--electric-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown-body a:hover {
+  color: var(--bright-blue);
+}
+
+/* Inline code */
+.markdown-body code:not(pre code) {
+  background: var(--deep-graphite);
+  border: 1px solid var(--subtle-slate);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  font-size: 0.85em;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  color: var(--bright-blue);
+}
+
+/* Code blocks */
+.markdown-body pre {
+  background: var(--deep-graphite) !important;
+  border: 1px solid var(--subtle-slate);
+  border-radius: 8px;
+  padding: 1em;
+  overflow-x: auto;
+  margin-bottom: 1em;
+  position: relative;
+}
+
+.markdown-body pre code {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+/* ── Code block header (language label) ───────────────────── */
+.code-block-wrapper {
+  position: relative;
+  margin-bottom: 1em;
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--subtle-slate);
+  border: 1px solid var(--subtle-slate);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  padding: 0.4em 0.8em;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--muted-gray);
+  letter-spacing: 0.02em;
+}
+
+.code-block-header + pre {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  margin-bottom: 0;
+}
+
+.copy-button {
+  background: transparent;
+  border: none;
+  color: var(--muted-gray);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  transition: all 0.15s ease;
+}
+
+.copy-button:hover {
+  background: rgba(76, 141, 255, 0.15);
+  color: var(--electric-blue);
+}
+
+/* ── Blockquote ───────────────────────────────────────────── */
+.markdown-body blockquote {
+  border-left: 3px solid var(--electric-blue);
+  margin: 0 0 1em 0;
+  padding: 0.5em 1em;
+  background: rgba(76, 141, 255, 0.05);
+  border-radius: 0 6px 6px 0;
+  color: var(--muted-gray);
+}
+
+/* ── Tables ───────────────────────────────────────────────── */
+.markdown-body table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid var(--subtle-slate);
+  padding: 0.5em 0.75em;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.markdown-body th {
+  background: var(--dark-slate);
+  font-weight: 600;
+  color: var(--almost-white);
+}
+
+.markdown-body td {
+  background: var(--slate-panel);
+}
+
+/* ── Horizontal Rule ──────────────────────────────────────── */
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid var(--subtle-slate);
+  margin: 1.5em 0;
+}
+
+/* ── Streaming cursor ─────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.streaming-cursor::after {
+  content: '▋';
+  animation: blink 1s step-end infinite;
+  color: var(--electric-blue);
+  margin-left: 2px;
+}
+
+/* ── Selection ────────────────────────────────────────────── */
+::selection {
+  background: rgba(76, 141, 255, 0.3);
+  color: var(--almost-white);
+}
